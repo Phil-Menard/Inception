@@ -1,0 +1,6 @@
+.vscode/
+nginx/certs/
+*.pem
+*.key
+vendor/
+notes
