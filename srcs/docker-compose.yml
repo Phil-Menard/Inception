@@ -1,49 +1,51 @@
 # version: "3.8"
 
-services:
-  mariadb:
-    build: ./requirements/mariadb
-    container_name: mariadb
-    env_file:
-      - .env
-    volumes:
-      - mariadb_data:/var/lib/mysql
-    restart: always
-    networks:
-      - inception
+# services:
+#   mariadb:
+#     build: ./requirements/mariadb
+#     container_name: mariadb
+#     env_file:
+#       - .env
+#     volumes:
+#       - mariadb:/var/lib/mysql
+#     restart: always
+#     networks:
+#       - inception
 
-  wordpress:
-    build: ./requirements/wordpress
-    container_name: wordpress
-    depends_on:
-      - mariadb
-    env_file:
-      - .env
-    volumes:
-      - wordpress_data:/var/www/html
-    restart: always
-    networks:
-      - inception
+#   wordpress:
+#     build: ./requirements/wordpress
+#     container_name: wordpress
+#     depends_on:
+#       - mariadb
+#     env_file:
+#       - .env
+#     volumes:
+#       - wordpress:/var/www/html
+#     restart: always
+#     networks:
+#       - inception
 
-  nginx:
-    build: ./requirements/nginx
-    container_name: nginx
-    depends_on:
-      - wordpress
-    ports:
-      - "443:443"
-    volumes:
-      - wordpress_data:/var/www/html
-    restart: always
-    networks:
-      - inception
+#   nginx:
+#     build: ./requirements/nginx
+#     container_name: nginx
+#     depends_on:
+#       - wordpress
+#     env_file:
+#       - .env
+#     ports:
+#       - "443:443"
+#     volumes:
+#       - wordpress:/var/www/html
+#     restart: always
+#     networks:
+#       - inception
 
-volumes:
-  mariadb_data:
-    driver: local
-  wordpress_data:
-    driver: local
+# volumes:
+#   mariadb:
+#     driver: local
+#   wordpress:
+#     driver: local
 
-networks:
-  inception:
-    driver: bridge
+# networks:
+#   inception:
+#     driver: bridge
